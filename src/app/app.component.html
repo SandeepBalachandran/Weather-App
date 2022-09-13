@@ -1,0 +1,16 @@
+<div class="container">
+  <app-city-select></app-city-select>
+
+  <ng-container *ngIf="weatherForecast$ | async as data">
+    <h1 *ngIf="!loader && error">{{ error }}</h1>
+
+    <div *ngIf="!loader && !error">
+      <app-today-weather [weather]="data?.weather"></app-today-weather>
+      <app-future-weather [forecast]="data?.forecast"></app-future-weather>
+    </div>
+  </ng-container>
+
+  <div *ngIf="loader" class="loader-container">
+    <div id="loading"></div>
+  </div>
+</div>
